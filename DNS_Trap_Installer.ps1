@@ -131,8 +131,8 @@ Switch ($result)
         Write-Host "Restoring old Logs..."
         
         # Restore old log files
-        IF (Test-Path "$env:temp\tempDNS") {Move-Item -Path "$env:temp\tempDNS" -Destination "$env:SystemRoot\Logs\DNS"}
-        IF (Test-Path "$env:temp\tempArchive") {Move-Item -Path "$env:temp\tempArchive" -Destination "$env:SystemRoot\Logs\DNSArchive"}
+        IF (Test-Path "$env:temp\tempDNS") {Get-ChildItem -Path "$env:temp\tempDNS" | % {Move-Item -Path $_.FullName -Destination "$env:SystemRoot\Logs\DNS"}}
+        IF (Test-Path "$env:temp\tempArchive") {Get-ChildItem -Path "$env:temp\tempArchive" | % {Move-Item -Path $_.FullName -Destination "$env:SystemRoot\Logs\DNSArchive"}}
         break
     }
 }
